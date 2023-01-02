@@ -37,14 +37,13 @@ class PessoasService {
                     message: `User ${idParam} updated successful`,
                     status: 200
                 });
-            } else {
-                await database.Pessoas.create(data);
-
-                return res.status(200).json({
-                    message: 'User created successful',
-                    status: 200
-                });
             }
+
+            await database.Pessoas.create(data);
+            return res.status(200).json({
+                message: 'User created successful',
+                status: 200
+            });
         } catch (error) {
             return res.status(400).json(error.message);
         }
@@ -65,6 +64,65 @@ class PessoasService {
             return res.status(400).json(error.message);
         }
     }
+
+    static async getMatriculaByPersonId(req, res) {
+        try {
+            const personId = req.params.id;
+            const result = await database.Matriculas.findAll({
+                where: { studantId: Number(personId) }
+            })
+
+            return res.status(200).json(result);
+        } catch (error) {
+            return res.status(500).json(error.message);
+        }
+    }
+
+    static async createOrUpdateMatriculaByPersonId(req, res) {
+        try {
+            const matriculaId = req.params.matId ?? null;
+            const studantId = req.params.id ?? null;
+            const newData = { ...req.body, studantId: Number(studantId) };
+
+            if (matriculaId) {
+                await database.Matriculas.update(newData, {
+                    where: {
+                        id: Number(matriculaId),
+                        studantId: Number(studantId)
+                    }
+                })
+
+                return res.status(200).json({
+                    message: `Register updated sucessful`,
+                    status: 200
+                })
+            }
+            await database.Matriculas.create(newData);
+
+            return res.status(200).json({
+                message: `Register created sucessful`,
+                status: 200
+            })
+        } catch (error) {
+            return res.status(500).json(error.message);
+        }
+    }
+
+    static async deleteMatricula(req, res) {
+        try {
+            const matriculaId = req.params.matId;
+            await database.Matriculas.destroy({
+                where: { id: Number(matriculaId) }
+            });
+
+            return res.status(200).json({
+                message: `Register ${matriculaId} deleted sucessful`,
+                status: 200
+            });
+        } catch (error) {
+            return res.status(400).json(error.message);
+        }
+    }
 }
 
-module.exports = PessoasService 
+module.exports = PessoasService;
