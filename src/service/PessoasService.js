@@ -38,8 +38,7 @@ class PessoasService {
 
                 return res.status(200).json({
                     message: `User ${idParam} updated successful`,
-                    status: 200,
-                    newData: newData
+                    status: 200
                 });
             } else {
                 await database.Pessoas.create(data);
@@ -56,7 +55,7 @@ class PessoasService {
     static async deletePerson(req, res) {
         try {
             const idParam = req.params.id;
-            await database.Pessoas.delete({
+            await database.Pessoas.destroy({
                 where: {
                     id: Number(idParam)
                 }
