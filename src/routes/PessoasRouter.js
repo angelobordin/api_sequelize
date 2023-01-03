@@ -8,9 +8,9 @@ route.post('/pessoas', PessoasService.createOrUpdatePerson);
 route.put('/pessoas/:id', PessoasService.createOrUpdatePerson);
 route.delete('/pessoas/:id', PessoasService.deletePerson);
 
-route.get('/pessoas/:id/matricula', PessoasService.getMatriculaByPersonId)
-route.post('/pessoas/:id/matricula', PessoasService.createOrUpdateMatriculaByPersonId)
-route.pust('/pessoas/:id/matricula/:matId', PessoasService.createOrUpdateMatriculaByPersonId);
+route.get('/pessoas/:id/matricula', PessoasService.getMatriculaByPersonId);
+route.post('/pessoas/:id/matricula', PessoasService.createOrUpdateMatriculaByPersonId);
+route.put('/pessoas/:id/matricula/:matId', PessoasService.createOrUpdateMatriculaByPersonId);
 route.delete('/pessoas/:id/matricula/:matId', PessoasService.deleteMatricula);
 
 module.exports = route;
