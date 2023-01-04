@@ -5,6 +5,7 @@ const route = Router();
 route.get('/niveis', NiveisService.getNiveisList);
 route.get('/niveis/:id', NiveisService.getNiveisById);
 route.post('/niveis', NiveisService.createOrUpdateNivel);
+route.post('/niveis/:id/restaurar', NiveisService.restoreNivel)
 route.put('/niveis/:id', NiveisService.createOrUpdateNivel);
 route.delete('/niveis/:id', NiveisService.deleteNivel);
 

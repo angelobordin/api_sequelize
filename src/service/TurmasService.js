@@ -64,6 +64,22 @@ class TurmasService {
             return res.status(500).json(error.message);
         }
     }
+
+    static async restoreTurma(req, res) {
+        try {
+            const { id } = req.params;
+            await database.Turmas.restore({
+                where: { id: Number(id) }
+            })
+
+            return res.status(200).json({
+                message: `Class ${id} restored sucessful`,
+                status: 200
+            })
+        } catch (error) {
+            return res.status(500).json(error.message);
+        }
+    }
 }
 
 module.exports = TurmasService;

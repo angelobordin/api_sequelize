@@ -64,6 +64,22 @@ class NiveisService {
             return res.status(500).json(error.message);
         }
     }
+
+    static async restoreNivel(req, res) {
+        try {
+            const { id } = req.params;
+            await database.Niveis.restore({
+                where: { id: Number(id) }
+            })
+
+            return res.status(200).json({
+                message: `Class Nivel ${id} restored sucessful`,
+                status: 200
+            })
+        } catch (error) {
+            return res.status(500).json(error.message);
+        }
+    }
 }
 
 module.exports = NiveisService;
