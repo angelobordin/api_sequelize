@@ -3,7 +3,7 @@ const database = require('../models/index.js');
 class PessoasService {
     static async getPeople(req, res) {
         try {
-            const result = await database.Pessoas.findAll();
+            const result = await database.Pessoas.scope('todos').findAll();
             return res.status(200).json(result);
         } catch (error) {
             return res.status(500).json(error.message)
@@ -29,7 +29,7 @@ class PessoasService {
             const data = req.body;
 
             if (idParam) {
-                const newData = await database.Pessoas.update(data, {
+                await database.Pessoas.update(data, {
                     where: { id: Number(idParam) }
                 });
 
@@ -38,7 +38,6 @@ class PessoasService {
                     status: 200
                 });
             }
-
             await database.Pessoas.create(data);
             return res.status(200).json({
                 message: 'User created successful',
@@ -60,6 +59,22 @@ class PessoasService {
                 message: `User ${idParam} deleted sucessful`,
                 status: 200
             });
+        } catch (error) {
+            return res.status(400).json(error.message);
+        }
+    }
+
+    static async restorePerson(req, res) {
+        try {
+            const id = req.params.id;
+            await database.Pessoas.restore({
+                wherer: { id: Number(id) }
+            })
+
+            return res.status(200).json({
+                message: `User ${id} restored sucessful`,
+                status: 200
+            })
         } catch (error) {
             return res.status(400).json(error.message);
         }
@@ -119,6 +134,26 @@ class PessoasService {
                 message: `Register ${matriculaId} deleted sucessful`,
                 status: 200
             });
+        } catch (error) {
+            return res.status(400).json(error.message);
+        }
+    }
+
+    static async restoreMatricula(req, res) {
+        try {
+            const personID = req.params.id;
+            const matriculaID = req.params.matId;
+            await database.Matriculas.restore({
+                where: {
+                    id: matriculaID,
+                    studantId: personID
+                }
+            })
+
+            return res.status(200).json({
+                message: `Register ${matriculaID} restored sucesful`,
+                status: 200
+            })
         } catch (error) {
             return res.status(400).json(error.message);
         }
