@@ -1,4 +1,4 @@
-const database = require('../models/index.js');
+const database = require('../../models/index.js');
 
 class TurmasService {
     static async getTurmasList(req, res) {

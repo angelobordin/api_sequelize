@@ -1,9 +1,9 @@
-const database = require('../models/index.js');
+const database = require('../../models/index.js');
 
 class PessoasService {
     static async getPeople(req, res) {
         try {
-            const result = await database.Pessoas.scope('todos').findAll();
+            const result = await database.Pessoas.findAll();
             return res.status(200).json(result);
         } catch (error) {
             return res.status(500).json(error.message)
