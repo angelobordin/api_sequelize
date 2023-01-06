@@ -1,9 +1,24 @@
-const database = require('../../models/index.js');
+const Sequelize = require('sequelize');
+const operators = Sequelize.Op;
+const Services = require('../services/Services.js');
+const turmasServices = new Services('Turmas');
 
-class TurmasService {
+class TurmasController {
     static async getTurmasList(req, res) {
         try {
-            const turmasList = await database.Turmas.findAll();
+            const initialDate = req.query.initDate;
+            const finalDate = req.query.finalDate;
+            let where = {};
+
+            if (initialDate || finalDate) {
+                where = { start: {
+                        [operators.lte]: finalDate ?? null,
+                        [operators.gte]: initialDate ?? null
+                    }
+                }
+            }
+
+            const turmasList = await turmasServices.getAllRegisters(where);
             return res.status(200).json(turmasList);
         } catch (error) {
             return res.status(500).json(error.message);
@@ -82,4 +97,4 @@ class TurmasService {
     }
 }
 
-module.exports = TurmasService;
+module.exports = TurmasController;

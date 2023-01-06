@@ -1,9 +1,10 @@
-const database = require('../../models/index.js');
+const Services = require('../services/Services.js');
+const niveisServices = new Services('Niveis');
 
-class NiveisService {
+class NiveisController {
     static async getNiveisList(req, res) {
         try {
-            const niveisList = await database.Niveis.findAll();
+            const niveisList = await niveisServices.getAllRegisters();
             return res.status(200).json(niveisList);
         } catch (error) {
             return res.status(500).json(error.message);
@@ -52,7 +53,7 @@ class NiveisService {
     static async deleteNivel(req, res) {
         try {
             const idParam = req.params.id;
-            await database.Niveis.destroy(data, {
+            await database.Niveis.destroy({
                 where: { id: Number(idParam) }
             })
 
@@ -82,4 +83,4 @@ class NiveisService {
     }
 }
 
-module.exports = NiveisService;
+module.exports = NiveisController;
