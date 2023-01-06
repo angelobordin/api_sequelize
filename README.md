@@ -20,7 +20,7 @@ Insert your data as example:<br>
 "database": "yourDataBaseNameHere",<br>
 "host": "127.0.0.1",<br>
 "dialect": "mysql"<br>
-/s/s}<br>
+}<br>
 Run "npx sequelize-cli db:migrate" for create tables;<br>
 Run "npx sequelize-cli db:seed:all" for migrate and create data in tables;<br>
 <br>
