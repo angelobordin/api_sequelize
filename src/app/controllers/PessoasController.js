@@ -50,7 +50,7 @@ class PessoasController {
     static async deletePerson(req, res) {
         try {
             const id = req.params.id;
-            await service.deleteRegister(id);
+            await service.deleteRegister({ id: Number(id) });
 
             return res.status(200).json({
                 message: `User ${id} deleted sucessful`,
@@ -64,7 +64,7 @@ class PessoasController {
     static async restorePerson(req, res) {
         try {
             const id = req.params.id;
-            await service.restoreRegister(id);
+            await service.restoreRegister({ id: Number(id) });
 
             return res.status(200).json({
                 message: `User ${id} restored sucessful`,

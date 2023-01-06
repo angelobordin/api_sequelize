@@ -14,9 +14,7 @@ class NiveisController {
     static async getNiveisById(req, res) {
         try {
             const idParam = req.params.id;
-            const result = await database.Niveis.findOne({
-                where: { id: Number(idParam) }
-            });
+            const result = await service.getRegisterById(idParam);
 
             return res.status(200).json(result);
         } catch (error) {
@@ -30,17 +28,14 @@ class NiveisController {
             const data = req.body;
             
             if (idParam) {
-                await database.Niveis.update(data, {
-                    where: { id: Number(idParam) }
-                });
-
+                await service.updateRegister(data, { id: Number(idParam) });
                 return res.status(200).json({
                     message: `Class Nivel ${idParam} updated successful`,
                     status: 200
                 });
             }
 
-            await database.Niveis.create(data);
+            await service.createRegister(data);
             return res.status(200).json({
                 message: `Class Nivel created sucessful`,
                 status: 200
@@ -53,9 +48,7 @@ class NiveisController {
     static async deleteNivel(req, res) {
         try {
             const idParam = req.params.id;
-            await database.Niveis.destroy({
-                where: { id: Number(idParam) }
-            })
+            await service.deleteRegister({ id: Number(idParam )});
 
             return res.status(200).json({
                 messsage: `Class Nivel ${idParam} deleted sucessful`,
@@ -69,9 +62,7 @@ class NiveisController {
     static async restoreNivel(req, res) {
         try {
             const { id } = req.params;
-            await database.Niveis.restore({
-                where: { id: Number(id) }
-            })
+            await service.restoreRegister({ id: Number(id) });
 
             return res.status(200).json({
                 message: `Class Nivel ${id} restored sucessful`,

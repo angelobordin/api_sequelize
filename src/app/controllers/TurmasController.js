@@ -28,9 +28,7 @@ class TurmasController {
     static async getTurmasById(req, res) {
         try {
             const idParam = req.params.id;
-            const result = await database.Turmas.findOne({
-                where: { id: Number(idParam) }
-            });
+            const result = await service.getRegisterById(idParam);
 
             return res.status(200).json(result);
         } catch (error) {
@@ -44,17 +42,17 @@ class TurmasController {
             const data = req.body;
             
             if (idParam) {
-                await database.Turmas.update(data, {
-                    where: { id: Number(idParam) }
-                });
-
+                const filter = {
+                    id: Number(idParam)
+                };
+                await service.updateRegister(data, filter);
                 return res.status(200).json({
                     message: `Class ${idParam} updated successful`,
                     status: 200
                 });
             }
 
-            await database.Turmas.create(data);
+            await service.createRegister(data);
             return res.status(200).json({
                 message: `Class created sucessful`,
                 status: 200
@@ -67,9 +65,8 @@ class TurmasController {
     static async deleteTurma(req, res) {
         try {
             const idParam = req.params.id;
-            await database.Turmas.destroy(data, {
-                where: { id: Number(idParam) }
-            })
+            const filter = { id: Number(idParam) };
+            await service.deleteRegister(filter);
 
             return res.status(200).json({
                 messsage: `Class ${idParam} deleted sucessful`,
@@ -83,9 +80,8 @@ class TurmasController {
     static async restoreTurma(req, res) {
         try {
             const { id } = req.params;
-            await database.Turmas.restore({
-                where: { id: Number(id) }
-            })
+            const filter = { id: Number(id) };
+            await service.restoreRegister(filter);
 
             return res.status(200).json({
                 message: `Class ${id} restored sucessful`,

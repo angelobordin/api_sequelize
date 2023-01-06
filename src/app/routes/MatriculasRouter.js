@@ -5,9 +5,8 @@ const route = Router();
 route.get('/matriculas', MatriculasController.getMatriculasList);
 route.get('/matriculas/:matId', MatriculasController.getMatriculasById);
 route.get('/matriculas/pessoa/:id', MatriculasController.getMatriculasByStudantId);
-
 route.post('/matriculas/pessoa/:id', MatriculasController.createOrUpdateMatriculaByPersonId);
-route.post('/matriculas/:matId/pessoa/:id', MatriculasController.restoreMatricula);
+route.post('/matriculas/:matId/pessoa/:id/restore', MatriculasController.restoreMatricula);
 route.put('/matriculas/:matId/pessoa/:id', MatriculasController.createOrUpdateMatriculaByPersonId);
 route.delete('/matriculas/:matId/pessoa/:id', MatriculasController.deleteMatricula);
 

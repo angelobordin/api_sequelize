@@ -68,9 +68,8 @@ class MatriculasController {
     static async deleteMatricula(req, res) {
         try {
             const matriculaId = req.params.matId;
-            await database.Matriculas.destroy({
-                where: { id: Number(matriculaId) }
-            });
+            const filter = { id: Number(matriculaId) };
+            await service.deleteRegister(filter);
 
             return res.status(200).json({
                 message: `Register ${matriculaId} deleted sucessful`,
@@ -85,12 +84,11 @@ class MatriculasController {
         try {
             const personID = req.params.id;
             const matriculaID = req.params.matId;
-            await database.Matriculas.restore({
-                where: {
-                    id: matriculaID,
-                    studantId: personID
-                }
-            })
+            const filter = {
+                id: matriculaID,
+                studantId: personID
+            };
+            await service.restoreRegister(filter);
 
             return res.status(200).json({
                 message: `Register ${matriculaID} restored sucesful`,

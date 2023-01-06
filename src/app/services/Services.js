@@ -41,20 +41,20 @@ class Services {
         }
     }
 
-    async deleteRegister(id) {
+    async deleteRegister(filter) {
         try {
             return await database[this.modelName].destroy({
-                where: { id: Number(id) }
+                where: { ...filter }
             });
         } catch (error) {
             throw new Error(error);
         }
     }
 
-    async restoreRegister(id) {
+    async restoreRegister(filter) {
         try {
             return await database[this.modelName].restore({
-                where: { id: Number(id) }
+                where: { ...filter }
             });
         } catch (error) {
             throw new Error(error);
