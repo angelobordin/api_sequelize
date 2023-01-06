@@ -15,12 +15,12 @@ Install MySQL and create a database to store data;<br>
 Config the database name and its infos in the file "config.json". (src >> config >> config.json)<br>
 Insert your data as example:<br>
 "development": {<br>
-    "username": "root",<br>
-    "password": "admin",<br>
-    "database": "yourDataBaseNameHere",<br>
-    "host": "127.0.0.1",<br>
-    "dialect": "mysql"<br>
-  }<br>
+&nbsp&nbsp&nbsp"username": "root",<br>
+&nbsp&nbsp&nbsp"password": "admin",<br>
+&nbsp&nbsp&nbsp"database": "yourDataBaseNameHere",<br>
+&nbsp&nbsp&nbsp"host": "127.0.0.1",<br>
+&nbsp&nbsp&nbsp"dialect": "mysql"<br>
+&nbsp&nbsp}<br>
 Run "npx sequelize-cli db:migrate" for create tables;<br>
 Run "npx sequelize-cli db:seed:all" for migrate and create data in tables;<br>
 <br>
