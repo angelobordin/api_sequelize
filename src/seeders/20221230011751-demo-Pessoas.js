@@ -5,36 +5,43 @@ module.exports = {
     return queryInterface.bulkInsert('Pessoas', [{
       name: "Angelo Bordin",
       active: true,
-      email: "angelo@teste",
+      email: "angelo@bordin.com",
       role: "Estudante",
       createdAt: new Date(),
       updatedAt: new Date()
     }, {
       name: "Maria fernanda",
       active: true,
-      email: "teste@teste",
+      email: "maria@fernanda.com",
       role: "Estudante",
       createdAt: new Date(),
       updatedAt: new Date()
     }, {
       name: "Julia Maria",
       active: true,
-      email: "teste@teste",
+      email: "professora@julia.com",
       role: "Docente",
       createdAt: new Date(),
       updatedAt: new Date()
     }, {
-      name: "Augusto",
+      name: "Augusto Pablo",
       active: true,
-      email: "teste@teste",
+      email: "professor@augusto.com",
       role: "Docente",
       createdAt: new Date(),
       updatedAt: new Date()
     }, {
       name: "Pedro Paulo",
       active: true,
-      email: "teste@teste",
-      role: "Docente",
+      email: "pedro@paulo.com",
+      role: "estudante",
+      createdAt: new Date(),
+      updatedAt: new Date()
+    }, {
+      name: "Maria Cecilia",
+      active: false,
+      email: "maria@cecilia.com",
+      role: "estudante",
       createdAt: new Date(),
       updatedAt: new Date()
     }], {});

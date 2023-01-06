@@ -14,6 +14,10 @@ module.exports = {
       name: 'Avançado',
       createdAt: new Date(),
       updatedAt: new Date()
+    }, {
+      name: 'Especialista',
+      createdAt: new Date(),
+      updatedAt: new Date()
     }], {});
   },
 
