@@ -1,10 +1,10 @@
-const Services = require('../services/Services.js');
-const niveisServices = new Services('Niveis');
+const NiveisServices = require('../services/NiveisService.js');
+const service = new NiveisServices();
 
 class NiveisController {
     static async getNiveisList(req, res) {
         try {
-            const niveisList = await niveisServices.getAllRegisters();
+            const niveisList = await service.getAllRegisters();
             return res.status(200).json(niveisList);
         } catch (error) {
             return res.status(500).json(error.message);

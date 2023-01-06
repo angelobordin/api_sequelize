@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 const operators = Sequelize.Op;
-const Services = require('../services/Services.js');
-const turmasServices = new Services('Turmas');
+const TurmasServices = require('../services/TurmasService.js');
+const service = new TurmasServices();
 
 class TurmasController {
     static async getTurmasList(req, res) {
@@ -18,7 +18,7 @@ class TurmasController {
                 }
             }
 
-            const turmasList = await turmasServices.getAllRegisters(where);
+            const turmasList = await service.getAllRegisters(where);
             return res.status(200).json(turmasList);
         } catch (error) {
             return res.status(500).json(error.message);

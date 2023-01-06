@@ -1,11 +1,34 @@
+const MatriculasServices = require('../services/MatriculasService');
+const service = new MatriculasServices(); 
 
 class MatriculasController {
-    static async getMatriculaByPersonId(req, res) {
+    static async getMatriculasList(req, res) {
         try {
-            const personId = req.params.id;
-            const result = await database.Matriculas.findAll({
-                where: { studantId: Number(personId) }
-            })
+            const result = await service.getAllRegisters()
+            return res.status(200).json(result);
+        } catch (error) {
+            return res.status(500).json(error.message);
+        }
+    }
+
+    static async getMatriculasById(req, res) {
+        try {
+            const personId = req.params.matId;
+            const result = await service.getRegisterById(personId);
+
+            return res.status(200).json(result);
+        } catch (error) {
+            return res.status(500).json(error.message);
+        }
+    }
+
+    static async getMatriculasByStudantId(req, res) {
+        try {
+            const studantId = req.params.id;
+            const filter = {
+                studantId: Number(studantId)
+            }
+            const result = await service.getAllRegisters(filter);
 
             return res.status(200).json(result);
         } catch (error) {
@@ -20,20 +43,19 @@ class MatriculasController {
             const newData = { ...req.body, studantId: Number(studantId) };
 
             if (matriculaId) {
-                await database.Matriculas.update(newData, {
-                    where: {
-                        id: Number(matriculaId),
-                        studantId: Number(studantId)
-                    }
-                })
+                const filter = {
+                    id: Number(matriculaId),
+                    studantId: Number(studantId)
+                };
+                await service.updateRegister(newData, filter);
 
                 return res.status(200).json({
                     message: `Register updated sucessful`,
                     status: 200
                 })
             }
-            await database.Matriculas.create(newData);
 
+            await service.createRegister(newData);
             return res.status(200).json({
                 message: `Register created sucessful`,
                 status: 200
