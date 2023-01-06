@@ -7,7 +7,7 @@ class Services {
 
     async getAllRegisters(filter = {}) {
         try {
-            return database[this.modelName].findAll({filter});
+            return await database[this.modelName].findAll({ where: { ...filter } });
         } catch (error) {
             throw new Error(error);
         }
@@ -15,15 +15,27 @@ class Services {
 
     async getRegisterById(id) {
         try {
-            
+            return await database[this.modelName].findOne({
+                where: { id: Number(id) }
+            });
         } catch (error) {
             throw new Error(error);
         }
     }
 
-    async createOrUpdateRegister(newRegister, id) {
+    async createRegister(data) {
         try {
-            
+            return await database[this.modelName].create(data);
+        } catch (error) {
+            throw new Error(error);
+        }
+    }
+
+    async updateRegister(newData, filter, transaction = {}) {
+        try {
+            return await database[this.modelName].update({ ...newData }, {
+                where: { ...filter }
+            }, { transaction: transaction });
         } catch (error) {
             throw new Error(error);
         }
@@ -31,7 +43,9 @@ class Services {
 
     async deleteRegister(id) {
         try {
-            
+            return await database[this.modelName].destroy({
+                where: { id: Number(id) }
+            });
         } catch (error) {
             throw new Error(error);
         }
@@ -39,7 +53,9 @@ class Services {
 
     async restoreRegister(id) {
         try {
-            
+            return await database[this.modelName].restore({
+                where: { id: Number(id) }
+            });
         } catch (error) {
             throw new Error(error);
         }
