@@ -32,8 +32,8 @@ module.exports = (sequelize, DataTypes) => {
     }
   });
   Pessoas.associate = function(models) {
-    Pessoas.hasMany(models.Matriculas, { foreignKey: 'teacherId' });
-    Pessoas.hasMany(models.Turmas, { foreignKey: 'studantId' });
+    Pessoas.hasMany(models.Matriculas, { foreignKey: 'studantId' });
+    Pessoas.hasMany(models.Turmas, { foreignKey: 'teacherId' });
   };
   return Pessoas;
 };
