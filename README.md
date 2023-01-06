@@ -3,7 +3,7 @@
 This project is for a study of Sequelize as ORM and the design pattern MVC.<br>
 It is a simple project with 4 tables on MySQL, with routes, services and controllers to manipulate their data.<br>
 I used only javascript, NodeJS and the Sequelize at backend.<br>
-Now I will create the frontend of project with angular probaly(I am studying this question).<br>
+The next step is to create the frontend of project with angular probaly(I am studying this question).<br>
 
 ## How to install
 
