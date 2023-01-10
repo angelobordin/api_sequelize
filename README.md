@@ -26,4 +26,4 @@ Insert in your file as the example:<br>
 Run "npx sequelize-cli db:migrate" for create tables;<br>
 Run "npx sequelize-cli db:seed:all" for migrate and create data in tables;<br>
 <br>
-Now your application is done for enjoy and do tests;<br>
+Now your application is done for enjoy and make tests;<br>
