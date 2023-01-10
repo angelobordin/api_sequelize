@@ -13,14 +13,16 @@ Run "Npm install" for install necessary dependencies;<br>
 Run "Npm run dev" to init server;<br>
 Install MySQL and create a database to store data;<br>
 Config the database name and its infos in the file "config.json". (src >> config >> config.json)<br>
-Insert your data as example:<br>
+<br>
+Insert in your file as the example:<br>
 "development": {<br>
-"username": "root",<br>
-"password": "admin",<br>
-"database": "yourDataBaseNameHere",<br>
-"host": "127.0.0.1",<br>
-"dialect": "mysql"<br>
+  "username": "root",<br>
+  "password": "admin",<br>
+  "database": "yourDataBaseNameHere",<br>
+  "host": "127.0.0.1",<br>
+  "dialect": "mysql"<br>
 }<br>
+<br>
 Run "npx sequelize-cli db:migrate" for create tables;<br>
 Run "npx sequelize-cli db:seed:all" for migrate and create data in tables;<br>
 <br>
